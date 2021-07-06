@@ -10,7 +10,7 @@ export async function fetchAll(req: Request, res: Response, next: NextFunction) 
         });
     }
     else {
-      res.status(401).send("Please log in");
+        res.status(401).send("Please log in");
     }
 }
 
@@ -20,6 +20,6 @@ export async function pushTodo(req: Request, res: Response, next: NextFunction) 
         res.status(200).send("Created");
     }
     else {
-      res.status(401).send("Please log in");
+        res.status(401).send("Please log in");
     }
 }

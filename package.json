@@ -63,6 +63,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/express-session": "^1.17.3",
     "@types/passport": "^1.0.6",
+    "@types/passport-jwt": "^3.0.5",
     "bcrypt": "^5.0.1",
     "command-line-args": "^5.1.1",
     "cookie-parser": "^1.4.5",
@@ -78,6 +79,7 @@
     "mongoose": "^5.13.2",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
