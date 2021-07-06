@@ -17,7 +17,7 @@ export function signUp (req: Request, res: Response) {
 export function logOut (req: Request, res: Response) {
     req.logout();
     req.session.destroy(() => {});
-    res.redirect('/');
+    res.status(200).send("Logged out");
 }
 
 export function logInSuccess (req: Request, res: Response) {
