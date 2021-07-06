@@ -10,6 +10,8 @@ import 'express-async-errors';
 import BaseRouter from './routes';
 import logger from '@shared/Logger';
 
+import passport from './passport';
+
 const app = express();
 const { BAD_REQUEST } = StatusCodes;
 
@@ -32,6 +34,10 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
     app.use(helmet());
 }
+
+// Passport
+passport(app);
+
 
 // Add APIs
 app.use('/api', BaseRouter);
