@@ -1,0 +1,27 @@
+version: "2.2"
+services:
+  api:
+    container_name: api
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    volumes:
+      - .:/app
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=puzzle
+      - MONGO_INITDB_ROOT_PASSWORD=puzzlePass
+      - MONGO_INITDB_DATABASE=todoapp
+    volumes:
+      - ./data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+
+volumes: 
+  data:
