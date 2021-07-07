@@ -10,8 +10,7 @@ previous middlewares.
 */
 
 export async function fetchAll(req: Request, res: Response, next: NextFunction) {
-    assert(req.user && req.userTodos)
-    console.log(req.userTodos);
+    assert(req.user && req.userTodos);
     let usertodo = UserTodo.findOneAndUpdate(
         {user_id: req.user!._id},
         {user_id: req.user!._id, todos: []}, //model
@@ -33,7 +32,7 @@ export async function fetchAll(req: Request, res: Response, next: NextFunction) 
 }
 
 export async function pushTodo(req: Request, res: Response, next: NextFunction) {
-    assert(req.user && req.userTodos)
+    assert(req.user && req.userTodos);    
     const todo: TodoDoc = req.body;  
     await UserTodo.findOneAndUpdate(
         {user_id: req.user!._id},
@@ -44,7 +43,7 @@ export async function pushTodo(req: Request, res: Response, next: NextFunction) 
 }
 
 export async function updateTodo(req: Request<{}, {}, TodoDoc>, res: Response, next: NextFunction) {
-    assert(req.user && req.userTodos)
+    assert(req.user && req.userTodos);
     const todo = req.body;
     const todoWithOutId = { ...todo };
     delete todoWithOutId._id;
@@ -60,4 +59,15 @@ export async function updateTodo(req: Request<{}, {}, TodoDoc>, res: Response, n
     }
     );    
     res.status(200).send("Updated");
+}
+
+export async function deleteTodo(req: Request<{}, {}, TodoDoc>, res: Response, next: NextFunction) {
+    assert(req.user && req.userTodos)
+    const todo = req.body;
+    const todoWithOutId = { ...todo };
+    delete todoWithOutId._id;
+    await UserTodo.findOneAndDelete({
+        user_id: req.user!._id,
+        'todos._id': todo._id
+    });  
 }
