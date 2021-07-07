@@ -2,7 +2,6 @@ import { TodoDoc } from "@entities/Todo";
 import { assert } from "console";
 import { NextFunction, Request, Response } from "express";
 import { UserTodo } from 'src/db/Todo';
-import { Todo as TodoType } from 'src/entities/Todo'; 
 
 /*
 This methods asume an user and its UserTodo table is available, this must be ensure in 
@@ -69,5 +68,6 @@ export async function deleteTodo(req: Request<{}, {}, TodoDoc>, res: Response, n
     await UserTodo.findOneAndDelete({
         user_id: req.user!._id,
         'todos._id': todo._id
-    });  
+    });
+    res.status(200).send("Deleted");
 }

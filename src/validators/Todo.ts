@@ -24,3 +24,13 @@ export function isNewTodoDoc (req: Request, res: Response, next: NextFunction) {
         res.status(400).send("Missing values");
     }
 } 
+
+export function hasId (req: Request, res: Response, next: NextFunction) {
+    if (req.body 
+        && '_id' in req.body) {
+        next();
+    }
+    else {
+        res.status(400).send("Missing values");
+    }
+}

@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import passport from 'passport';
 import injectTodos from 'src/db/inject';
-import { isNewTodoDoc, isTodoDoc } from 'src/validators/Todo';
+import { hasId, isNewTodoDoc, isTodoDoc } from 'src/validators/Todo';
 import { deleteTodo, fetchAll, pushTodo, updateTodo } from './Todo';
 import { signUp, logInSuccess, logOut } from './Users';
 
@@ -22,7 +22,7 @@ const todoRouter = Router();
 todoRouter.get('/', fetchAll);
 todoRouter.post('/', isNewTodoDoc, pushTodo);
 todoRouter.put('/', isTodoDoc, updateTodo);
-todoRouter.delete('/', isTodoDoc, deleteTodo);
+todoRouter.delete('/', hasId, deleteTodo);
 
 
 // Export the base-router
