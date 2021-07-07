@@ -12,3 +12,11 @@ export type UserTodoDoc = Document & {
     user_id: string;
     todos: Todo[];
 }
+
+declare global {
+    namespace Express {
+        interface Request {
+            userTodos: UserTodoDoc | null
+        }
+    }
+}
