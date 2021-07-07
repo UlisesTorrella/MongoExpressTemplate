@@ -7,3 +7,8 @@ export type Todo = {
 }
 
 export type TodoDoc = Document & Todo
+
+export type UserTodoDoc = Document & {
+    user_id: string;
+    todos: Todo[];
+}

@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import passport from 'passport';
-import { isTodoDoc } from 'src/validators/Todo';
+import { isNewTodoDoc, isTodoDoc } from 'src/validators/Todo';
 import { fetchAll, pushTodo, updateTodo } from './Todo';
 import { signUp, logInSuccess, logOut } from './Users';
 
@@ -18,13 +18,13 @@ userRouter.get('/profile', passport.authenticate('jwt', { session: false }),
 
 // Todo routes
 const todoRouter = Router();
-todoRouter.get('/', passport.authenticate('jwt', { session: false }), fetchAll);
-todoRouter.post('/', passport.authenticate('jwt', { session: false }), isTodoDoc, pushTodo);
-todoRouter.put('/', passport.authenticate('jwt', { session: false }), isTodoDoc, updateTodo);
+todoRouter.get('/', fetchAll);
+todoRouter.post('/', isNewTodoDoc, pushTodo);
+todoRouter.put('/', isTodoDoc, updateTodo);
 
 
 // Export the base-router
 const baseRouter = Router();
-baseRouter.use('/todos', todoRouter);
+baseRouter.use('/todos', passport.authenticate('jwt', { session: false }), todoRouter);
 baseRouter.use('/accounts', userRouter);
 export default baseRouter;

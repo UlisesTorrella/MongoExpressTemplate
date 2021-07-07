@@ -7,3 +7,12 @@ export type UserDoc = Document &  {
     password: string;
     validatePassword: validatePasswordFunc; 
 }
+
+
+declare global {
+    namespace Express {
+        interface User {
+            _id?: string
+        }
+    }
+}

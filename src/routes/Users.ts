@@ -24,6 +24,6 @@ export function logOut (req: Request, res: Response) {
 
 export function logInSuccess (req: Request, res: Response) {
     const user = req.user! as UserDoc;
-    const token = sign(user.toJSON(), jwtSecret);
+    const token = sign(user.toJSON(), jwtSecret);    
     return res.json({user, token});
 }

@@ -12,3 +12,14 @@ export function isTodoDoc (req: Request, res: Response, next: NextFunction) {
         res.status(400).send("Missing values");
     }
 } 
+
+export function isNewTodoDoc (req: Request, res: Response, next: NextFunction) {
+    if (req.body 
+        && 'description' in req.body
+        && 'done' in req.body) {
+        next();
+    }
+    else {
+        res.status(400).send("Missing values");
+    }
+} 

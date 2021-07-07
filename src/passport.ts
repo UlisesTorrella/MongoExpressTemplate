@@ -56,7 +56,7 @@ export default function (app: Express) {
     }
 
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-        User.findOne({id: jwt_payload.id}, function(err: NativeError, user: UserDoc) {
+        User.findOne({_id: jwt_payload._id}, function(err: NativeError, user: UserDoc) {
             if (err) {
                 return done(err, false);
             }

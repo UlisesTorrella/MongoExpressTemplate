@@ -1,4 +1,4 @@
-import { TodoDoc } from "@entities/Todo";
+import { UserTodoDoc } from "@entities/Todo";
 import mongoose, { Model, Schema } from "mongoose";
 
 const TodoSchema = new Schema({
@@ -17,6 +17,15 @@ const TodoSchema = new Schema({
         required: false
     }
 });
-const Todo: Model<TodoDoc> = mongoose.model<TodoDoc>('Todo', TodoSchema);
 
-export { Todo };
+const UserTodoSchema = new Schema({
+    user_id: {
+        required: true,
+        type: String,
+        index: {unique: true}
+    },
+    todos: [TodoSchema]
+})
+const UserTodo: Model<UserTodoDoc> = mongoose.model<UserTodoDoc>('Todo', UserTodoSchema);
+
+export { UserTodo };
