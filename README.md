@@ -53,5 +53,5 @@ This repo is dockerized, so you can just:
 
 ### Delete Todos:
 
-curl --location --request DELETE 'localhost:3000/api/todos' --header 'Authorization: Bearer <your-token>' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_id=<todo-id>'
+`curl --location --request DELETE 'localhost:3000/api/todos' --header 'Authorization: Bearer <your-token>' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode '_id=<todo-id>'`
 
